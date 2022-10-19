@@ -9,6 +9,8 @@ import { AgregarComponent } from './pages/agregar/agregar.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { MaterialModule } from '../material/material.module';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { MaterialModule } from '../material/material.module';
     BuscarComponent,
     HeroeComponent,
     HomeComponent,
-    ListadoComponent
+    ListadoComponent,
+    HeroeTarjetaComponent
   ],
   imports: [
     CommonModule,
+    FlexLayoutModule,
     HeroesRoutingModule,
     MaterialModule
   ]
