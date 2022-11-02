@@ -29,4 +29,13 @@ export class HeroesService {
     }
     return this.http.get<Heroe[]>(`${this.baseUrl}/heroes/`, { params });
   }
+
+
+  agregarHeroe (nuevoHeroe: Heroe) {
+    return this.http.post<Heroe[]>(`${this.baseUrl}/heroes`, nuevoHeroe);
+  }
+
+  editarHeroe (heroe: Heroe) {
+    return this.http.put<Heroe[]>(`${this.baseUrl}/heroes/${heroe.id}`, heroe);
+  }
 }
