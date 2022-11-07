@@ -12,8 +12,10 @@ import { HeroeComponent } from './pages/heroe/heroe.component';
 import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { MaterialModule } from '../material/material.module';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { ImgPipe } from '../pipes/imagen.pipe';
+import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {MatSelectModule} from '@angular/material/select';
     HeroeComponent,
     HomeComponent,
     ListadoComponent,
-    HeroeTarjetaComponent
+    HeroeTarjetaComponent,
+    ImgPipe,
+    ConfirmarComponent
   ],
   imports: [
     CommonModule,

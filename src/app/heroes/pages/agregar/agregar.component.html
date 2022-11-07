@@ -38,13 +38,30 @@
 
         </mat-form-field>
 
+        <mat-form-field fxFlex="100">
+            <mat-label>Imagen Url  </mat-label>
+            <input matInput type="text" [(ngModel)]="heroe.alt_img" required>
 
-        <div fxLayout>
+        </mat-form-field>
+
+
+        <div fxLayout fxLayoutAlign="space-around">
             <button mat-raised-button color="primary" (click)="guardar()" >
                 <mat-icon>
                     edit
                 </mat-icon>
                 {{ heroe.id ?  'Actualizar': 'Crear heroe'}}
+            </button>
+
+            <button 
+                *ngIf="heroe.id"
+                mat-raised-button 
+                color="warn" 
+                (click)="eliminar(heroe.id)" >
+                <mat-icon>
+                    remove
+                </mat-icon>
+               Eliminar
             </button>
 
         </div>
@@ -53,12 +70,12 @@
     </div>
 
     <div fxFlex="50">
-        <p>---------------------------</p>
+        <img mat-card-image [src]="heroe | imgHeroe" alt="">
     </div>
 </div>
 
 
-
+<!-- 
 <br>
 <h2>Formulario dinamico </h2>
 <form [formGroup]="formGroup" (ngSubmit)="guardar()">
@@ -66,4 +83,4 @@
     <dynamic-material-form [group]="formGroup" [model]="formModel"></dynamic-material-form>
 
     <button type="submit"> Agregar </button>
-</form>
+</form> -->

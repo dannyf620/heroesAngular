@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicFormModel, DynamicFormService } from "@ng-dynamic-forms/core";
 import { switchMap } from 'rxjs';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { Heroe, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 
@@ -41,7 +43,9 @@ export class AgregarComponent implements OnInit {
     private heroesService: HeroesService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
+
   ) { }
 
   ngOnInit(): void {
@@ -66,22 +70,42 @@ export class AgregarComponent implements OnInit {
     if (this.heroe.id) {
       // Editanto
       this.heroesService.editarHeroe(this.heroe).subscribe(
-        res => console.log(res)
+        res => {
+          this.mostrarSnackbar('Heroe actualizado');
+        }
       );
-      this.mostrarSnackbar('Heroe actualizado');
     } else {
       // Agregrando uno nuevo 
-
-      this.heroesService.agregarHeroe(this.heroe).subscribe();
-      this.mostrarSnackbar('Heroe Creado');
+      this.heroesService.agregarHeroe(this.heroe).subscribe(
+        res => {
+          this.mostrarSnackbar('Heroe actualizado correctamente');
+          this.router.navigate(['/heroes/editar', res.id]);
+        }
+      );
     }
-
   }
-
 
   mostrarSnackbar(mensaje: string) {
     this.snackBar.open(mensaje, 'ok!!!', {
       duration: 3000
     })
+  }
+
+  eliminar(id: string) {
+    const dialogRef = this.dialog.open(ConfirmarComponent, {
+      width: '250px',
+      data: this.heroe,
+    });
+
+    dialogRef.afterClosed().subscribe(
+      value => {
+        if (value) {
+          this.heroesService.eliminarHeroe(id).subscribe(
+            () => { this.router.navigate(['/heroes']); }
+          );
+        }
+      }
+    );
+
   }
 }

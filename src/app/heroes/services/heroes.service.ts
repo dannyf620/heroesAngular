@@ -32,10 +32,14 @@ export class HeroesService {
 
 
   agregarHeroe (nuevoHeroe: Heroe) {
-    return this.http.post<Heroe[]>(`${this.baseUrl}/heroes`, nuevoHeroe);
+    return this.http.post<Heroe>(`${this.baseUrl}/heroes`, nuevoHeroe);
   }
 
   editarHeroe (heroe: Heroe) {
     return this.http.put<Heroe[]>(`${this.baseUrl}/heroes/${heroe.id}`, heroe);
+  }
+
+  eliminarHeroe (heroeId: string) {
+    return this.http.delete<Heroe[]>(`${this.baseUrl}/heroes/${heroeId}`);
   }
 }
