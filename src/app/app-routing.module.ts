@@ -10,6 +10,13 @@ const routes: Routes = [
     path: 'heroes',
     loadChildren: () => import('./heroes/heroes.module').then(m => m.HeroesModule)
   }, {
+    path: 'mapa',
+    loadChildren: () => import('./cyber-defense/cyber-defense.module').then(m => m.CyberDefenseModule)
+  },
+  {
+    path: 'ataques',
+    loadChildren: () => import('./map/map.module').then(m => m.MapModule)
+  }, {
     path: '404',
     component: ErrorPageComponent
   },
